@@ -1,0 +1,21 @@
+import {
+{{#each actions}}
+  {{upperSnackCase action}},
+{{/each}}
+} from './actions';
+
+export function {{entityName}}(state = {}, action) {
+  switch (action.type) {
+
+    {{#each actions}}
+    case {{upperSnackCase action}}:
+      return {
+        ...action.payload
+      }
+
+    {{/each}}
+
+    default:
+      return state;
+  }
+}

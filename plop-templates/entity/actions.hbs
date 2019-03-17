@@ -1,0 +1,10 @@
+{{#each actions}}
+export const {{upperSnackCase action}} = '{{upperSnackCase action}}';
+export function {{action}}(data) {
+  return {
+    type: {{upperSnackCase action}},
+    payload: data
+  }
+}
+
+{{/each}}

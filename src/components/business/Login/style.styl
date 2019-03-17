@@ -1,0 +1,115 @@
+@require '~Config/style/variables.styl'
+
+.login-screen
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background: gray
+  display: flex
+  flex-flow: column nowrap
+
+  &:before
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: rgba(0, 0, 0, 0)
+    content: ''
+    z-index: 1
+
+  &:after
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background-size: cover
+    background-position: center
+    content: ''
+    z-index: 0
+
+.cardContent
+  position: relative
+  padding: size-xxl
+
+.card
+  margin: auto
+  // border: 1px solid rgba(color-main, 0.5)
+  border-radius: rad-x
+  background-color: rgba(0, 0, 0, 0.5)
+  z-index: 1
+  overflow: hidden
+  width: 460px
+
+  h1
+    color: white
+    text-align: center
+    margin-bottom: size-xxl
+    line-height: 1
+    font-size: font-xxl + 6
+
+.form
+  display: flex
+  flex-flow: column nowrap
+
+  & input[type='text'], & input[type='password'], & button
+    background: transparent
+    border: 1px solid black
+    background-color: rgba(0, 0, 0, 0.5)
+    border-radius: rad-x
+    color: white
+    margin-bottom: size-xl
+    padding: size-xs size-xs
+    width: 100%
+    min-width: 300px
+    box-sizing: border-box
+    font-size: font-x
+
+    &:focus
+      border: 1px solid rgba(0, 0, 0, 1)
+      background-color: rgba(0, 0, 0, 0.7)
+      outline: none
+
+  & input[type='submit']
+    visibility: hidden
+    height: 0
+
+  button
+    border: 1px solid transparent
+    color: white
+    text-transform: uppercase
+    font-weight: bold
+    font-size: font-xl
+    cursor: pointer
+
+    &:hover
+      border: 1px solid rgba(0, 0, 0, 1)
+      background-color: rgba(0, 0, 0, 1)
+      color: color-main
+
+    &:focus
+      border: 1px solid rgba(0, 0, 0, 1)
+
+.errorMessage
+  color: color-red
+  text-align: center
+  margin-top: -(size-xl / 2)
+  margin-bottom: size-xl
+  min-height: 1.2em
+
+.link
+  color: white
+  text-align: center
+  font-size: font-xs
+  text-decoration: none
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5)
+
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active
+  -webkit-box-shadow: 0 0 0 30px black inset !important
+  -webkit-text-fill-color: white !important
+  -webkit-border-fill-color: white !important
+  input: -internal-autofill-selected
