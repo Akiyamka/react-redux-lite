@@ -16,15 +16,15 @@ module.exports = {
     inline: true,
     port: '8080',
     allowedHosts: [
-        '.platform.dev'
+      '.platform.dev'
     ]
   },
   entry: {
     index: __dirname + '/src/index.js',
   },
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: '[name].[contenthash].bundle.js',
+    chunkFilename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
@@ -113,9 +113,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-          //Note:- No wildcard is specified hence will copy all files and folders
-          from: 'src/public/', //Will resolve to RepoDir/src/assets
-          to: 'public' //Copies all files from above dest to dist/assets
+        //Note:- No wildcard is specified hence will copy all files and folders
+        from: 'src/public/', //Will resolve to RepoDir/src/assets
+        to: 'public' //Copies all files from above dest to dist/assets
       },
     ]),
     new SVGSpritemapPlugin(__dirname + '/src/public/icons/*.svg')
