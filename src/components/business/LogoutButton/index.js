@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'unistore/react';
 import { logout } from 'Entities/currentUser';
 
 function LogoutButton({ className, logout }) {

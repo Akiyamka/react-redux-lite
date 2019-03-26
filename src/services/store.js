@@ -1,6 +1,5 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import createStore from 'unistore';
+import devtools from 'unistore/devtools';
 
 function importAll(webpackContext) {
   const customImport = path => webpackContext(path);
@@ -13,20 +12,25 @@ function importAll(webpackContext) {
 }
 
 /* Auto import all reducers in entities/.../reducer.js files */
-const entities = importAll(
-  require.context('./../entities/', true, /reducer\.js$/)
+const imports = importAll(
+  require.context('./../entities/', true, /index\.js$/)
 );
 
-/* Auto import all api in entities/.../api.js files */
-const api = importAll(
-  require.context('./../entities/', true, /api\.js$/)
-);
+const importedActions = Object.entries(imports).reduce((result, [key, val]) => {
+  if (result[key]) console.warn('Look like you have two action with same name:', key);
+  if (typeof val === 'function') result[key] = val;
+  return result;
+}, {})
 
-const combinedReducers = combineReducers(entities);
-
-const store = createStore(
-  combinedReducers,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)))
-);
+const initialState = {};
+const store = process.env.NODE_ENV === 'production'
+  ? createStore(initialState)
+  : devtools(createStore(initialState));
 
 export default store;
+
+// eslint-disable-next-line no-unused-vars
+const actions = store => ({ ...importedActions });
+export { actions };
+
+

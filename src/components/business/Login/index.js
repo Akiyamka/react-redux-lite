@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'unistore/react'
 import style from './style.styl';
 
 /* Store */

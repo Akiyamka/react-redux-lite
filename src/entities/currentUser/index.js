@@ -1,20 +1,33 @@
-import { setCurrentUser, resetCurrentUser } from './actions';
-import { addError } from 'Entities/errors';
+import { loginRequest } from './api';
+import { addError } from './../errors';
 
-/* Login */
-export function login(credentials) {
-  return async (dispatch, getState, { loginRequest }) => {
-    try {
-      const currentUser = await loginRequest(credentials);
-      dispatch(setCurrentUser(currentUser))
-    } catch (error) {
-      dispatch(addError(error))
-    }
+const REDUCER = 'currentUser';
+
+export async function login(state, credentials) {
+  try {
+    const currentUser = await loginRequest(credentials);
+    rememberUser(currentUser);
+    return { [REDUCER]: currentUser }
+  } catch (error) {
+    console.warn(error);
+    return addError(state, error.message);
   }
 }
 
 export function logout() {
-  return dispatch => {
-    dispatch(resetCurrentUser())
-  }
+  forgotUser();
+  return { [REDUCER]: null };
+}
+
+export const USER_LOGIN_MARK = 'userAuth';
+export const USER_GUEST_MARK = 'userIsGuest';
+
+function rememberUser(user) {
+  window.sessionStorage.setItem(USER_LOGIN_MARK, true);
+  if (user.isGuest) window.sessionStorage.setItem(USER_GUEST_MARK, true);
+}
+
+function forgotUser() {
+  window.sessionStorage.setItem(USER_LOGIN_MARK, false);
+  window.sessionStorage.setItem(USER_GUEST_MARK, false);
 }

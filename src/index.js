@@ -3,15 +3,14 @@ import '@babel/polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from 'Services/store';
 
 /* Components */
 import App from 'Components/business/App';
 import Login from 'Components/business/Login';
 
 /* Redux */
-import { connect } from 'react-redux';
+import store from 'Services/store';
+import { Provider, connect } from 'unistore/react';
 
 function loginResolver({ currentUser }) {
   const isAuthorized = currentUser && currentUser.isAuthorized;

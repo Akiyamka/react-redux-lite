@@ -1,10 +1,10 @@
+const REDUCER = 'error';
 
-import {
-  addError,
-  clearErrors,
-} from './actions';
-
-export {
-  addError,
-  clearErrors,
+export function addError(store, message) {
+  return { [REDUCER]: message };
 }
+
+export function clearErrors() {
+  return { [REDUCER]: null };
+}
+
