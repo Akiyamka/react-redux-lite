@@ -22,8 +22,8 @@ const Authenticator = connect(state => ({
 }))(loginResolver);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Authenticator />
-    </Provider>,
+  <Provider store={store}>
+    <Authenticator />
+  </Provider>,
   document.getElementById('app')
 );

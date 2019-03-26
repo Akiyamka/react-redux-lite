@@ -1,23 +1,74 @@
 {
   "parser": "babel-eslint",
-  "plugins": [
-    "react",
-    "react-hooks"
-  ],
-  "rules": {
-    "max-len": [1, 120, 2, {"ignoreComments": true}],
-    "react/prop-types": [0],
-    "react-hooks/rules-of-hooks": "error",
-    "quotes": [2, "single", { "avoidEscape": true }],
-    "no-console": [1]
+  "settings": {
+      "react": {
+          "createClass": "createReactClass",
+          "pragma": "React", 
+          "version": "detect"
+      },
+      "propWrapperFunctions": [
+          "forbidExtraProps",
+          {
+              "property": "freeze",
+              "object": "Object"
+          },
+          {
+              "property": "myFavoriteWrapper"
+          }
+      ],
+      "linkComponents": [
+          "Hyperlink",
+          {
+              "name": "Link",
+              "linkAttribute": "to"
+          }
+      ]
+  },
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+      "eslint:recommended",
+      "plugin:react/recommended"
   ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "react-hooks"
+  ],
+  "rules": {
+      "indent": [
+          "error",
+          2
+      ],
+      "linebreak-style": [
+          "error",
+          "unix"
+      ],
+      "quotes": [
+          "error",
+          "single"
+      ],
+      "semi": [
+          "error",
+          "always"
+      ],
+      "react/prop-types": [
+          "warn"
+      ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
   }
 }

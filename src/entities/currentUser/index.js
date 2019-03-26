@@ -7,8 +7,9 @@ export async function login(state, credentials) {
   try {
     const currentUser = await loginRequest(credentials);
     rememberUser(currentUser);
-    return { [REDUCER]: currentUser }
+    return { [REDUCER]: currentUser };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(error);
     return addError(state, error.message);
   }

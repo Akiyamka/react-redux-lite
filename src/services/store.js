@@ -6,7 +6,7 @@ function importAll(webpackContext) {
   const paths = webpackContext.keys();
   return paths.reduce((acc, path) => {
     const reducersInModule = customImport(path);
-    Object.assign(acc, reducersInModule)
+    Object.assign(acc, reducersInModule);
     return acc;
   }, {});
 }
@@ -17,10 +17,11 @@ const imports = importAll(
 );
 
 const importedActions = Object.entries(imports).reduce((result, [key, val]) => {
+  // eslint-disable-next-line no-console
   if (result[key]) console.warn('Look like you have two action with same name:', key);
   if (typeof val === 'function') result[key] = val;
   return result;
-}, {})
+}, {});
 
 const initialState = {};
 const store = process.env.NODE_ENV === 'production'

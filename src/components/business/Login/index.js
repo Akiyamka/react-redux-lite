@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'unistore/react'
+import { connect } from 'unistore/react';
 import style from './style.styl';
 
 /* Store */
@@ -21,7 +21,7 @@ function Login({ loginUser }) {
           <h1>Login</h1>
           <form className={style.form} onSubmit={e => logIn(e)} >
 
-            <div style={{position: 'relative'}}>
+            <div style={{ position: 'relative' }}>
               <input
                 tabIndex="1"
                 type="text"
@@ -31,30 +31,30 @@ function Login({ loginUser }) {
                 required
                 placeholder="Your email"
                 value={login}
-                onChange={e => setLogin(e.target.value)}/>
-              </div>
+                onChange={e => setLogin(e.target.value)} />
+            </div>
 
-              <input
-                tabIndex="2"
-                type="password"
-                name="password"
-                id="password"
-                minLength="3"
-                required
-                placeholder="Your password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
+            <input
+              tabIndex="2"
+              type="password"
+              name="password"
+              id="password"
+              minLength="3"
+              required
+              placeholder="Your password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
 
-              <input
-                type="submit"
-                value="Log in"
-                id="submit"
-              />
+            <input
+              type="submit"
+              value="Log in"
+              id="submit"
+            />
 
-              <label htmlFor="submit">
-                <button>Log in</button>
-              </label>
+            <label htmlFor="submit">
+              <button>Log in</button>
+            </label>
 
           </form>
         </div>
@@ -64,4 +64,4 @@ function Login({ loginUser }) {
 }
 
 
-export default connect(null, { loginUser })(Login)
+export default connect(null, { loginUser })(Login);
