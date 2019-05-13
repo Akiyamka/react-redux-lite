@@ -1,5 +1,5 @@
 
-import MainPage from 'Components/business/MainPage';
+import MainPage from 'Components/pages/MainPage';
 
 export default [
   { name: 'Root', link: '/', component: MainPage },

@@ -4,5 +4,5 @@ import style from './style.styl';
 export default function TabsMenu({ children }) {
   return <ul className={style.tabsMenu}>
     { children }
-  </ul>
+  </ul>;
 }

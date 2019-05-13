@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
 import style from './style.styl';
 
 export default function {{componentName}}({ className }) {
   return <div className={className}>
 
-  </div>
+  </div>;
 }
+
+{{componentName}}.propTypes = {
+  className: PropTypes.string
+};

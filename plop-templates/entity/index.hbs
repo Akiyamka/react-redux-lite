@@ -1,6 +1,12 @@
 
-import {
+export const REDUCER = {
+  {{entityName}}: null
+};
+
 {{#each actions}}
-  {{action}},
+
+export function {{ action }}(state, payload) {
+
+  return { {{../entityName}}: null };
+}
 {{/each}}
-} from './actions';

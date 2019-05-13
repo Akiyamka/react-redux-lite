@@ -3,21 +3,29 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const fs = require('fs');
+
+
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html',
 });
 
+const prosEnvFile = fs.readFileSync('./.env.production').toString();
+const isochroneEndpoint = prosEnvFile.match(/ISOCHRONE_ENDPOINT.*?(?=\s)/)[0].split('=')[1];
 module.exports = {
   devtool: 'source-map',
   devServer: {
+    proxy: {
+      '/isochrone': {
+        target: isochroneEndpoint,
+        pathRewrite: {'^/isochrone' : ''}
+      },
+    },
     compress: true,
     inline: true,
     port: '8080',
-    allowedHosts: [
-      '.platform.dev'
-    ]
   },
   entry: {
     index: __dirname + '/src/index.js',
@@ -42,7 +50,7 @@ module.exports = {
         }
       },
       {
-        test: /\.styl$/,
+        test: /[^.global]\.styl$/,
         use: [
           'style-loader',
           {
@@ -50,6 +58,19 @@ module.exports = {
             options: {
               modules: true,
               localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          'stylus-loader'
+        ]
+      },
+      {
+        test: /\.global.styl$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false
             }
           },
           'stylus-loader'
@@ -109,7 +130,7 @@ module.exports = {
   plugins: [
     htmlPlugin,
     new Dotenv({
-      path: './.env'
+      path: process.env.NODE_ENV === 'production' ? './.env.production' : './.env'
     }),
     new CopyWebpackPlugin([
       {
@@ -130,3 +151,4 @@ module.exports = {
     }
   }
 };
+
