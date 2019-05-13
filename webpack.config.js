@@ -12,17 +12,17 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: './index.html',
 });
 
-const prosEnvFile = fs.readFileSync('./.env.production').toString();
-const isochroneEndpoint = prosEnvFile.match(/ISOCHRONE_ENDPOINT.*?(?=\s)/)[0].split('=')[1];
+// const prosEnvFile = fs.readFileSync('./.env.production').toString();
+
 module.exports = {
   devtool: 'source-map',
   devServer: {
-    proxy: {
-      '/isochrone': {
-        target: isochroneEndpoint,
-        pathRewrite: {'^/isochrone' : ''}
-      },
-    },
+    // proxy: {
+    //   '/isochrone': {
+    //     target: isochroneEndpoint,
+    //     pathRewrite: {'^/isochrone' : ''}
+    //   },
+    // },
     compress: true,
     inline: true,
     port: '8080',
